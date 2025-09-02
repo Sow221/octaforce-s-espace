@@ -1,0 +1,135 @@
+1️⃣ Introduction à React
+
+Objectifs : comprendre ce qu’est React, pourquoi on l’utilise, et installer l’environnement.
+
+Qu’est-ce que React ? (librairie vs framework)
+
+Single Page Application (SPA)
+
+Installation avec Vite ou Create React App
+
+Structure d’un projet React
+
+Premier composant React
+
+JSX (JavaScript XML)
+
+📌 Mini-exercice : créer un composant <Hello /> qui affiche un message passé en props.
+
+2️⃣ Composants et Props
+
+Objectifs : créer des composants réutilisables et comprendre la communication via props.
+
+Composants fonctionnels
+
+Props : passage de données
+
+Props par défaut (defaultProps)
+
+PropTypes (validation des props)
+
+📌 Projet : carte de profil (nom, photo, description) réutilisable.
+
+3️⃣ State et gestion des événements
+
+Objectifs : apprendre à gérer les données internes d’un composant.
+
+useState() : définition et mise à jour d’un état
+
+Gestion des événements (onClick, onChange, etc.)
+
+Binding d’événements
+
+État contrôlé vs non contrôlé
+
+📌 Projet : compteur + formulaire interactif.
+
+4️⃣ Hooks React
+
+Objectifs : comprendre les principaux hooks.
+
+useState() et useEffect() (effets secondaires, API calls)
+
+useRef() (référence d’éléments)
+
+useContext() (partage d’état global)
+
+Introduction à useReducer() (gestion d’état avancée)
+
+📌 Projet : To-do list avec sauvegarde dans localStorage.
+
+5️⃣ Gestion des listes et rendu conditionnel
+
+Objectifs : afficher des données dynamiquement.
+
+Boucles avec .map()
+
+Rendu conditionnel (if, ? :, &&)
+
+Keys uniques dans les listes
+
+Filtrage et tri de données
+
+📌 Projet : tableau dynamique avec filtrage et recherche.
+
+6️⃣ Communication avec une API
+
+Objectifs : apprendre à récupérer et envoyer des données à un serveur.
+
+fetch() et axios en React
+
+Chargement de données dans useEffect
+
+Gestion du chargement et des erreurs
+
+📌 Projet : application météo avec API publique.
+
+7️⃣ Navigation avec React Router
+
+Objectifs : créer une SPA avec plusieurs pages.
+
+Installation de react-router-dom
+
+Routes simples et dynamiques
+
+Navigation avec <Link> et useNavigate
+
+Paramètres d’URL (useParams)
+
+📌 Projet : mini-blog avec pages article.
+
+8️⃣ Gestion d’état avancée
+
+Objectifs : gérer des données partagées entre plusieurs composants.
+
+Contexte React (useContext)
+
+Introduction à Redux / Zustand
+
+Reducers et actions
+
+📌 Projet : panier d’achat partagé entre plusieurs pages.
+
+9️⃣ Optimisation et bonnes pratiques
+
+Objectifs : écrire un code React performant.
+
+Découpage en petits composants
+
+Mémoïsation (React.memo, useCallback, useMemo)
+
+Lazy loading (React.lazy)
+
+Gestion des erreurs avec Error Boundaries
+
+🔟 Projet final
+
+Objectif : mettre en pratique tout le cours.
+
+Choisir entre :
+
+E-commerce simple (produits, panier, paiement fictif)
+
+Dashboard interactif (graphes, filtres, API)
+
+Réseau social mini (posts, likes, commentaires)

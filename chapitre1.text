@@ -1,0 +1,99 @@
+1️⃣ Installation et premier projet React avec Vite
+Étape 1 : Installer Node.js
+
+Vérifie que Node.js est installé :
+
+node -v
+npm -v
+
+
+Si ce n’est pas installé → Télécharger Node.js
+ (LTS recommandé)
+
+Étape 2 : Créer un projet React avec Vite
+
+Vite est rapide et moderne, parfait pour apprendre React.
+
+# Créer un projet
+npm create vite@latest mon-app
+
+# Choisir :
+# 1. Nom du projet : mon-app
+# 2. Framework : React
+# 3. Variant : JavaScript (ou TypeScript si tu veux plus tard)
+
+# Aller dans le dossier du projet
+cd mon-app
+
+# Installer les dépendances
+npm install
+
+# Lancer le projet
+npm run dev
+
+
+Après npm run dev, tu verras l’URL dans le terminal (ex: http://localhost:5173/) → ouvre-la dans ton navigateur.
+
+Étape 3 : Structure du projet
+
+Dans mon-app tu trouveras :
+
+mon-app/
+├─ index.html
+├─ package.json
+├─ vite.config.js
+├─ src/
+│  ├─ main.jsx      # Point d'entrée de React
+│  ├─ App.jsx       # Composant principal
+│  └─ assets/       # Images, CSS...
+
+Étape 4 : Premier composant React
+
+Ouvre src/App.jsx et remplace par ceci :
+
+function App() {
+  const message = "Bonjour, bienvenue dans React !";
+  
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>{message}</h1>
+      <p>Ceci est votre premier composant React.</p>
+    </div>
+  );
+}
+
+export default App;
+
+
+Sauvegarde et regarde dans le navigateur : tu devrais voir ton message.
+
+Étape 5 : Ajouter un composant enfant
+
+Crée un fichier src/Hello.jsx :
+
+function Hello({ name }) {
+  return <h2>Salut {name}, ravi de te voir ici !</h2>;
+}
+
+export default Hello;
+
+
+Modifie App.jsx pour l’utiliser :
+
+import Hello from "./Hello";
+
+function App() {
+  const message = "Bienvenue dans React !";
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>{message}</h1>
+      <Hello name="Moussa" />
+    </div>
+  );
+}
+
+export default App;
+
+
+Tu verras maintenant le composant enfant afficher un message personnalisé.
