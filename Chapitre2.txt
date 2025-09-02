@@ -1,0 +1,118 @@
+//State et gestion des événements
+Étape 1 : Comprendre useState
+
+useState permet à un composant de stocker des données dynamiques.
+
+Syntaxe :
+
+import { useState } from "react";
+
+function Compteur() {
+  const [count, setCount] = useState(0); // 0 = valeur initiale
+
+  return (
+    <div>
+      <h2>Compteur : {count}</h2>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+      <button onClick={() => setCount(count - 1)}>-1</button>
+    </div>
+  );
+}
+
+export default Compteur;
+
+
+count → valeur actuelle du state
+
+setCount → fonction pour modifier le state
+
+useState(0) → initialise le compteur à 0
+
+Étape 2 : Ajouter le composant à App.jsx
+import Hello from "./Hello";
+import Compteur from "./Compteur";
+
+function App() {
+  const message = "Bienvenue dans React !";
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>{message}</h1>
+      <Hello name="Moussa" />
+      <Compteur />
+    </div>
+  );
+}
+
+export default App;
+
+
+Maintenant tu as un compteur interactif avec +1 / -1.
+
+Étape 3 : Gérer un formulaire
+
+On peut maintenant ajouter un input pour interagir avec le state :
+
+import { useState } from "react";
+
+function Formulaire() {
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Bonjour ${name} !`);
+    setName(""); // vider le champ
+  };
+
+  return (
+    <form onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
+      <input
+        type="text"
+        placeholder="Votre nom"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button type="submit">Envoyer</button>
+    </form>
+  );
+}
+
+export default Formulaire;
+
+
+value={name} → état contrôlé (controlled input)
+
+onChange → met à jour le state à chaque frappe
+
+onSubmit → gère l’envoi du formulaire
+
+Étape 4 : Ajouter le formulaire à App.jsx
+import Hello from "./Hello";
+import Compteur from "./Compteur";
+import Formulaire from "./Formulaire";
+
+function App() {
+  const message = "Bienvenue dans React !";
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>{message}</h1>
+      <Hello name="Moussa" />
+      <Compteur />
+      <Formulaire />
+    </div>
+  );
+}
+
+export default App;
+
+
+✅ Résultat :
+
+Tu as maintenant :
+
+Un composant affichant un message (Hello)
+
+Un compteur interactif (Compteur)
+
+Un formulaire dynamique (Formulaire)
