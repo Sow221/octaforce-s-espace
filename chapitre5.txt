@@ -1,0 +1,157 @@
+Paramètres d’URL
+
+Pourquoi ?
+
+Parfois, tu veux accéder à une page spécifique avec un identifiant.
+
+Exemple : /users/1 → afficher les détails de l’utilisateur avec l’ID 1.
+
+Comment ça marche :
+
+On utilise :id dans la route.
+
+Puis useParams() pour récupérer la valeur.
+
+Créer un composant UserDetail.jsx
+
+src/pages/UserDetail.jsx
+
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+function UserDetail() {
+  const { id } = useParams(); // récupère l'id depuis l'URL
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setUser(data);
+        setLoading(false);
+      })
+      .catch(err => console.error(err));
+  }, [id]);
+
+  if (loading) return <p>Chargement...</p>;
+  if (!user) return <p>Utilisateur non trouvé.</p>;
+
+  return (
+    <div>
+      <h2>Détails de l’utilisateur {id}</h2>
+      <p>Nom : {user.name}</p>
+      <p>Email : {user.email}</p>
+      <p>Ville : {user.address.city}</p>
+    </div>
+  );
+}
+
+export default UserDetail;
+
+Mettre à jour UsersPage pour ajouter des liens
+
+src/pages/UsersPage.jsx
+
+import Users from "../Users";
+import { Link } from "react-router-dom";
+
+function UsersPage() {
+  return (
+    <div>
+      <h2>Page des utilisateurs</h2>
+      <Users showLinks={true} /> {/* On passera showLinks pour activer les liens */}
+    </div>
+  );
+}
+
+export default UsersPage;
+
+
+src/Users.jsx (modifie pour inclure les liens) :
+
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+function Users({ showLinks }) {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(data => {
+        setUsers(data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Chargement des utilisateurs...</p>;
+
+  return (
+    <ul>
+      {users.map(user => (
+        <li key={user.id}>
+          {showLinks ? <Link to={`/users/${user.id}`}>{user.name}</Link> : user.name}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default Users;
+
+Mettre à jour App.jsx pour la route dynamique
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import UsersPage from "./pages/UsersPage";
+import UserDetail from "./pages/UserDetail";
+import FormPage from "./pages/FormPage";
+import NotFound from "./pages/NotFound";
+
+function App() {
+  return (
+    <Router>
+      <div style={{ textAlign: "center" }}>
+        <h1>Mon Application React avec Router</h1>
+        <nav style={{ marginBottom: "20px" }}>
+          <Link to="/" style={{ margin: "0 10px" }}>Accueil</Link>
+          <Link to="/users" style={{ margin: "0 10px" }}>Utilisateurs</Link>
+          <Link to="/form" style={{ margin: "0 10px" }}>Formulaire</Link>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/users/:id" element={<UserDetail />} /> {/* Route dynamique */}
+          <Route path="/form" element={<FormPage />} />
+          <Route path="*" element={<NotFound />} /> {/* Page 404 */}
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+
+2️⃣ Page 404
+
+src/pages/NotFound.jsx
+
+function NotFound() {
+  return <h2>404 - Page non trouvée 😅</h2>;
+}
+
+export default NotFound;
+
+3️⃣ Résultat attendu
+
+Accueil → simple message
+
+Utilisateurs → liste avec liens vers détails
+
+Détails → /users/1 affiche l’utilisateur 1
+
+Formulaire → toujours interactif
+
+URL inconnue → page 404
