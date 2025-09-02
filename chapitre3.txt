@@ -1,0 +1,118 @@
+useEffect et appels API
+Étape 1 : Comprendre useEffect
+
+useEffect sert à exécuter du code après le rendu du composant.
+
+Exemple simple :
+
+import { useState, useEffect } from "react";
+
+function CompteurEffet() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Le compteur a changé :", count);
+  }, [count]); // dépendances : déclenché seulement quand count change
+
+  return (
+    <div>
+      <h2>Compteur : {count}</h2>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+    </div>
+  );
+}
+
+export default CompteurEffet;
+
+
+[] → useEffect s’exécute une seule fois au montage
+
+[count] → s’exécute à chaque changement de count
+
+Étape 2 : Récupérer des données depuis une API
+
+Exemple : récupérer des utilisateurs depuis l’API JSONPlaceholder.
+
+import { useState, useEffect } from "react";
+
+function Users() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch((err) => console.error(err));
+  }, []); // [] : exécuté une seule fois au montage
+
+  if (loading) return <p>Chargement...</p>;
+
+  return (
+    <div>
+      <h2>Liste des utilisateurs :</h2>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>{user.name} - {user.email}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Users;
+
+
+loading → pour indiquer le chargement des données
+
+.map() → pour afficher la liste d’utilisateurs
+
+key → obligatoire pour chaque élément de liste
+
+Étape 3 : Ajouter le composant Users à App.jsx
+import Hello from "./Hello";
+import Compteur from "./Compteur";
+import Formulaire from "./Formulaire";
+import Users from "./Users";
+
+function App() {
+  const message = "Bienvenue dans React !";
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>{message}</h1>
+      <Hello name="Moussa" />
+      <Compteur />
+      <Formulaire />
+      <Users />
+    </div>
+  );
+}
+
+export default App;
+
+
+Maintenant, ton application :
+
+Affiche un message
+
+A un compteur interactif
+
+Un formulaire dynamique
+
+Récupère et affiche des données depuis une API
+
+Étape 4 : Astuces React
+
+Toujours nettoyer les effets si nécessaire pour éviter les fuites mémoire :
+
+useEffect(() => {
+  const timer = setInterval(() => console.log("Tick"), 1000);
+  return () => clearInterval(timer); // cleanup
+}, []);
+
+
+Les dépendances [dep1, dep2] → déclenche l’effet seulement si elles changent
