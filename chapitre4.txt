@@ -1,0 +1,140 @@
+React Router – Pourquoi ?
+
+Problème avec React de base :
+
+React est une Single Page Application (SPA).
+
+Cela veut dire qu’il n’y a qu’une seule page HTML (index.html).
+
+Si tu veux plusieurs pages (accueil, utilisateurs, contact), tu ne peux pas juste créer plusieurs HTML.
+
+Sinon, tu perdrais l’avantage de React : réactivité et rapidité.
+
+Solution : React Router
+
+Permet de simuler plusieurs pages dans une SPA.
+
+On change de “page” sans recharger le navigateur.
+
+Chaque “page” est un composant React.
+
+On peut passer des paramètres via l’URL et gérer la navigation.
+
+Avantages pratiques :
+
+Navigation fluide (SPA)
+
+Historique (bouton précédent / suivant)
+
+URL propres et partageables
+
+Applications complexes organisées par route
+
+Installer React Router
+
+Dans ton projet React :
+
+npm install react-router-dom
+
+
+react-router-dom → version pour les applications web (DOM).
+
+Créer les pages (composants)
+
+Imaginons trois pages :
+
+Accueil
+
+Utilisateurs
+
+Formulaire
+
+Crée trois fichiers :
+
+src/pages/Home.jsx
+
+function Home() {
+  return <h2>Bienvenue sur la page d'accueil !</h2>;
+}
+export default Home;
+
+
+src/pages/UsersPage.jsx
+
+import Users from "../Users";
+
+function UsersPage() {
+  return (
+    <div>
+      <h2>Page des utilisateurs</h2>
+      <Users />
+    </div>
+  );
+}
+export default UsersPage;
+
+
+src/pages/FormPage.jsx
+
+import Formulaire from "../Formulaire";
+
+function FormPage() {
+  return (
+    <div>
+      <h2>Page Formulaire</h2>
+      <Formulaire />
+    </div>
+  );
+}
+export default FormPage;
+
+Configurer le Router dans App.jsx
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import UsersPage from "./pages/UsersPage";
+import FormPage from "./pages/FormPage";
+
+function App() {
+  return (
+    <Router>
+      <div style={{ textAlign: "center" }}>
+        <h1>Mon Application React avec Router</h1>
+        {/* Menu de navigation */}
+        <nav style={{ marginBottom: "20px" }}>
+          <Link to="/" style={{ margin: "0 10px" }}>Accueil</Link>
+          <Link to="/users" style={{ margin: "0 10px" }}>Utilisateurs</Link>
+          <Link to="/form" style={{ margin: "0 10px" }}>Formulaire</Link>
+        </nav>
+
+        {/* Définition des routes */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/form" element={<FormPage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+
+Explications :
+
+Router
+
+Englobe toute ton application pour activer le routage.
+
+Link
+
+Remplace <a> pour ne pas recharger la page.
+
+Routes et Route
+
+Route : définit quelle page afficher pour chaque URL.
+
+element={<Home />} : le composant à afficher.
+
+Navigation fluide
+
+Clique sur les liens → la SPA change de page sans recharger.
