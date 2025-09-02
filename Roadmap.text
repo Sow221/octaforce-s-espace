@@ -1,0 +1,51 @@
+3️⃣ Manipulation avancée du DOM
+
+Sélecteurs modernes (querySelector, querySelectorAll)
+
+Création et suppression d’éléments dynamiques
+
+Gestion des événements (addEventListener)
+
+Délégation d’événements pour les listes dynamiques
+
+Intersection Observer API (détection de scroll, lazy loading)
+
+4️⃣ Concepts avancés
+
+Closures et portée des variables
+
+Fonctions pures et immutabilité
+
+Map / Filter / Reduce pour manipuler les tableaux
+
+Set et Map (nouvelles structures de données)
+
+this, bind, call, apply
+
+Classes et héritage en JS
+
+Prototype et héritage prototype-based
+
+5️⃣ API & communication
+
+Utilisation de fetch avec méthodes GET/POST
+
+Consommer une API REST (ex. météo, films, etc.)
+
+Travailler avec JSON
+
+Web Storage API (localStorage, sessionStorage)
+
+Cookies et authentification basique
+
+6️⃣ Petits projets pratiques
+
+To-do list avec localStorage
+
+App météo avec une API publique
+
+Infinite scroll (chargement au défilement)
+
+Jeu du quiz (questions aléatoires depuis une API)
+
+Filtrage dynamique d’une liste avec filter()
